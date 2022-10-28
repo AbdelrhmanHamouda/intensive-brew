@@ -38,10 +38,10 @@ jobs:
           tags: ${{ env.TEST_IMAGE }}
 
       - name: Lint package
-        run: docker run --rm ${{ env.TEST_TAG }} poe lint
+        run: docker run --rm ${{ env.TEST_TAG }} "poe lint"
 
       - name: Test package
-        run: docker run --rm ${{ env.TEST_TAG }} poe test
+        run: docker run --rm ${{ env.TEST_TAG }} "poe test"
 
       # TODO setup coverage in #8
 #      - name: Run codacy coverage reporter

@@ -49,8 +49,8 @@ RUN : \
 # Copy the content of the `src` directory to the working directory
 COPY src/ ./src
 
-# Copy the content of the `src` directory to the working directory
-COPY test/ ./test
+# Copy the content of the `test` directory to the working directory
+COPY tests/ ./tests
 
 # Add all files to trigger commit checks
 RUN git add .

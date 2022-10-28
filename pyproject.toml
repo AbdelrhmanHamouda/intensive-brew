@@ -1,0 +1,195 @@
+# https://python-poetry.org/docs/pyproject/#poetry-and-pep-517
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# https://python-poetry.org/docs/pyproject/
+[tool.poetry]
+name = "intensive-brew"
+version = "0.0.0"
+description = "Simple cli tool that converts a simple yaml into a compatible Locust Kubernetes Operator custom resource."
+authors = ["Abdelrhman Hamouda <.>"]
+readme = "README.md"
+repository = "https://github.com/AbdelrhmanHamouda/intensive-brew"
+
+# https://commitizen-tools.github.io/commitizen/config/
+[tool.commitizen]
+bump_message = "bump(release): v$current_version → v$new_version"
+tag_format = "v$version"
+update_changelog_on_bump = true
+version = "0.0.0"
+version_files = ["pyproject.toml:version"]
+
+# https://python-poetry.org/docs/pyproject/#scripts
+[tool.poetry.scripts]
+intensive-brew = "intensive_brew.cli:app"
+
+# https://python-poetry.org/docs/dependency-specification/
+[tool.poetry.dependencies]
+pydantic = "^1.9.1"
+python = "^3.10"
+typer = { extras = ["all"], version = "^0.6.1" }
+
+# https://python-poetry.org/docs/master/managing-dependencies/
+[tool.poetry.group.test.dependencies]
+absolufy-imports = "^0.3.1"
+bandit = { extras = ["toml"], version = "^1.7.4" }
+black = "^22.6.0"
+commitizen = "^2.27.1"
+coverage = { extras = ["toml"], version = "^6.4.1" }
+darglint = "^1.8.1"
+flake8 = "^5.0.4"
+flake8-bugbear = "^22.6.22"
+flake8-comprehensions = "^3.10.0"
+flake8-mutable = "^1.2.0"
+flake8-print = "^5.0.0"
+Flake8-pyproject = "^1.1.0"
+flake8-pytest-style = "^1.6.0"
+flake8-rst-docstrings = "^0.2.6"
+flake8-tidy-imports = "^4.8.0"
+isort = "^5.10.1"
+mypy = "^0.961"
+pep8-naming = "^0.13.0"
+poethepoet = "^0.16.0"
+pre-commit = "^2.19.0"
+pydocstyle = { extras = ["toml"], version = "^6.1.1" }
+pytest = "^7.1.2"
+pytest-clarity = "^1.0.1"
+pytest-mock = "^3.8.1"
+pytest-xdist = "^2.5.0"
+pyupgrade = "^2.34.0"
+safety = "^2.1.1"
+typeguard = "^2.13.3"
+yesqa = "^1.4.0"
+
+# https://python-poetry.org/docs/master/managing-dependencies/
+[tool.poetry.group.dev.dependencies]
+cruft = "^2.11.0"
+pdoc = "^12.0.2"
+
+# https://bandit.readthedocs.io/en/latest/config.html
+[tool.bandit]
+skips = ["B101"]
+
+# https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+# https://coverage.readthedocs.io/en/latest/config.html#report
+[tool.coverage.report]
+fail_under = 60
+precision = 1
+show_missing = true
+skip_covered = true
+
+# https://coverage.readthedocs.io/en/latest/config.html#run
+[tool.coverage.run]
+branch = true
+command_line = "--module pytest"
+data_file = "reports/.coverage"
+source = ["src"]
+
+# https://coverage.readthedocs.io/en/latest/config.html#xml
+[tool.coverage.xml]
+output = "reports/coverage.xml"
+
+# https://flake8.pycqa.org/en/latest/user/options.html#options-and-their-descriptions
+# https://github.com/terrencepreilly/darglint#flake8
+[tool.flake8]
+color = "always"
+docstring_style = "numpy"
+doctests = true
+ignore = ["DAR103", "E203", "E501", "W503", "DAR201", "DAR101", "B008", "DAR401"]
+max_line_length = 140
+max_complexity = 10
+strictness = "short"
+
+# https://pycqa.github.io/isort/docs/configuration/options.html
+[tool.isort]
+color_output = true
+line_length = 100
+profile = "black"
+src_paths = ["src", "tests"]
+
+# https://mypy.readthedocs.io/en/latest/config_file.html
+[tool.mypy]
+junit_xml = "reports/mypy.xml"
+plugins = "pydantic.mypy"
+strict = true
+disallow_subclassing_any = false
+disallow_untyped_decorators = false
+
+ignore_missing_imports = true
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+warn_unreachable = true
+
+# https://pydantic-docs.helpmanual.io/mypy_plugin/#configuring-the-plugin
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+# http://www.pydocstyle.org/en/latest/usage.html#configuration-files
+[tool.pydocstyle]
+convention = "numpy"
+
+# https://docs.pytest.org/en/latest/reference/reference.html#ini-options-ref
+[tool.pytest.ini_options]
+addopts = "--color=yes --doctest-modules --exitfirst --failed-first --strict-config --strict-markers --typeguard-packages=intensive_brew --verbosity=2 --junitxml=reports/pytest.xml"
+filterwarnings = ["error", "ignore::DeprecationWarning"]
+testpaths = ["src", "tests"]
+xfail_strict = true
+
+# https://github.com/nat-n/poethepoet
+[tool.poe.tasks]
+
+[tool.poe.tasks.docs]
+help = "Generate this package's docs"
+cmd = """
+    pdoc
+      --docformat $docformat
+      --output-directory $outputdirectory
+      intensive_brew
+    """
+
+[[tool.poe.tasks.docs.args]]
+help = "The docstring style (default: numpy)"
+name = "docformat"
+options = ["--docformat"]
+default = "numpy"
+
+[[tool.poe.tasks.docs.args]]
+help = "The output directory (default: docs)"
+name = "outputdirectory"
+options = ["--output-directory"]
+default = "docs"
+
+[tool.poe.tasks.lint]
+help = "Lint this package"
+
+[[tool.poe.tasks.lint.sequence]]
+cmd = """
+      pre-commit run
+        --all-files
+        --color always
+      """
+
+[[tool.poe.tasks.lint.sequence]]
+shell = "safety check --continue-on-error --full-report"
+
+[tool.poe.tasks.test]
+help = "Test this package"
+
+[[tool.poe.tasks.test.sequence]]
+cmd = "coverage run"
+
+[[tool.poe.tasks.test.sequence]]
+cmd = "coverage report"
+
+[[tool.poe.tasks.test.sequence]]
+cmd = "coverage xml"

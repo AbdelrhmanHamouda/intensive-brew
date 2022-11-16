@@ -69,6 +69,7 @@ pdoc = "^12.0.2"
 mkdocs-material = "^8.5.10"
 
 # https://bandit.readthedocs.io/en/latest/config.html
+mkdocs-git-revision-date-localized-plugin = "^1.1.0"
 [tool.bandit]
 skips = ["B101"]
 

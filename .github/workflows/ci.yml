@@ -43,12 +43,6 @@ jobs:
       - name: Test package
         run: docker run --rm ${{ env.TEST_IMAGE }} "poe test"
 
-      # TODO setup coverage in #8
-  #      - name: Run codacy coverage reporter
-  #        uses: codacy/codacy-coverage-reporter-action@v1
-  #        with:
-  #          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-
   docs-test:
     name: Test documentation
     runs-on: ubuntu-latest

@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10"]
+        python-version: [ "3.10" ]
 
     name: Tests with Python ${{ matrix.python-version }}
 
@@ -44,7 +44,33 @@ jobs:
         run: docker run --rm ${{ env.TEST_IMAGE }} "poe test"
 
       # TODO setup coverage in #8
-#      - name: Run codacy coverage reporter
-#        uses: codacy/codacy-coverage-reporter-action@v1
-#        with:
-#          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+  #      - name: Run codacy coverage reporter
+  #        uses: codacy/codacy-coverage-reporter-action@v1
+  #        with:
+  #          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
+  docs-test:
+    name: Test documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          pip install \
+          mkdocs-material \
+          mkdocs-git-revision-date-localized-plugin
+
+      - name: Build documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -m mkdocs build

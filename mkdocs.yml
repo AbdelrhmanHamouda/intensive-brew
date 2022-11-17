@@ -38,30 +38,27 @@ theme:
 
     # Table of content
     - toc.follow
-    - toc.integrate
 
     # Code
     - content.code.annotate
 
   palette:
 
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: green
-      accent: teal
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-
     # Palette toggle for light mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: default
-      primary: green
-      accent: teal
+    - scheme: default
+      primary: pink
+      accent: blue
       toggle:
-        icon: material/weather-night
+        icon: material/toggle-switch-off-outline
         name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: pink
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 # Customization
 extra:
@@ -133,3 +130,4 @@ markdown_extensions:
 # Page tree
 nav:
   - Introduction: index.md
+  - YAML configuration: test-config.md

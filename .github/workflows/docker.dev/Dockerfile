@@ -52,6 +52,9 @@ COPY src/ ./src
 # Copy the content of the `test` directory to the working directory
 COPY tests/ ./tests
 
+# Copy the content of the `docs` directory to the working directory
+COPY docs/ ./docs
+
 # Add all files to trigger commit checks
 RUN git add .
 

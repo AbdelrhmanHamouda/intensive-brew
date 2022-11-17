@@ -1,4 +1,133 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
-site_name: My Docs
+
+# Project information
+site_name: Intensive Brew
+site_description: Cli tool to convert yaml to Locust Kubernetes Operator custom resource.
+
+# Repository
+repo_name: intensive-brew
+repo_url: https://github.com/AbdelrhmanHamouda/intensive-brew
+
+# Copyright
+copyright: >
+  Copyright &copy; 2022 –
+  <a href="#__consent">Change cookie settings</a>
+
+# Plugins
+plugins:
+  - search
+  - git-revision-date-localized
+
+# Configuration
 theme:
   name: material
+
+  icon:
+    logo: fontawesome/solid/mug-hot
+    repo: material/github
+
+
+  features:
+    # Search
+    - search.highlight
+    - search.share
+
+    # Navigation
+    - navigation.tracking
+    - navigation.top
+
+    # Table of content
+    - toc.follow
+
+    # Code
+    - content.code.annotate
+
+  palette:
+
+    # Palette toggle for light mode
+    - scheme: default
+      primary: pink
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: pink
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+# Customization
+extra:
+  consent:
+    title: Cookie consent
+    actions:
+      - manage
+      - accept
+      - reject
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+
+
+  social:
+
+    # DockerHub
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/lotest/intensive-brew
+      name: Intensive Brew on DockerHub
+
+
+    # Bug
+    - icon: fontawesome/solid/bug
+      link: https://github.com/AbdelrhmanHamouda/intensive-brew/issues
+      name: Report a bug!
+
+# Extensions
+markdown_extensions:
+
+  # Python Markdown
+  - abbr
+  - admonition
+  - tables
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: ⚓
+      permalink_title: Anchor link to this section for reference
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.critic
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Introduction: index.md
+  - YAML configuration: test-config.md

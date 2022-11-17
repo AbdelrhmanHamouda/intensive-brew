@@ -1,17 +1,19 @@
-# Welcome to MkDocs
+# Intensive Brew
+Generate LocustTest custom resources with ease!
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+---
+[//]: # (Badges)
+[![CI]][CI_URL]
 
-## Commands
+<div style="text-align: center;">
+<img  src="assets/images/brew_config.svg" height="500" width="500" alt=""/>
+</div> 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## At a glance
+Intensive Brew is a simple cli tool that converts a declarative yaml configuration into a compatible [Locust Kubernetes Operator] custom
+resource. It provides a user-friendly abstraction layer that allow for simple and direct declaration of test requirements to be converted into a valid custom resource. It can also be part of the CI pipelines. 
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+[//]: # (Links)
+[CI]: https://github.com/AbdelrhmanHamouda/intensive-brew/actions/workflows/ci.yml/badge.svg?branch=main
+[CI_URL]: https://github.com/AbdelrhmanHamouda/intensive-brew/actions/workflows/ci.yml
+[Locust Kubernetes Operator]: https://abdelrhmanhamouda.github.io/locust-k8s-operator/

@@ -13,4 +13,4 @@ class Configuration(BaseModel):
 
         frozen = True
 
-    test_key: dict[str, TestConfig]
+    configurations: dict[str, TestConfig]

@@ -75,7 +75,7 @@ skips = ["B101"]
 
 # https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
 [tool.black]
-line-length = 100
+line-length = 140
 target-version = ["py310"]
 
 # https://coverage.readthedocs.io/en/latest/config.html#report
@@ -110,7 +110,7 @@ strictness = "short"
 # https://pycqa.github.io/isort/docs/configuration/options.html
 [tool.isort]
 color_output = true
-line_length = 100
+line_length = 140
 profile = "black"
 src_paths = ["src", "tests"]
 

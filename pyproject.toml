@@ -54,7 +54,7 @@ pep8-naming = "^0.13.0"
 poethepoet = "^0.16.0"
 pre-commit = "^2.19.0"
 pydocstyle = { extras = ["toml"], version = "^6.1.1" }
-pytest = "^7.1.2"
+pytest = "^7"
 pytest-clarity = "^1.0.1"
 pytest-mock = "^3.8.1"
 pytest-xdist = "^2.5.0"

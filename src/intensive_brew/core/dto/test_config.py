@@ -9,6 +9,9 @@ from intensive_brew.core.dto.vanilla_specs import VanillaSpecs
 class TestConfig(BaseModel):
     """Main test configuration."""
 
+    # Needed so the pytest runner ignore this class from test collection
+    __test__ = False
+
     # * Expert mode
     expert_mode: ExpertMode | None = None
 

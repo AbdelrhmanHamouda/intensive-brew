@@ -29,6 +29,7 @@ intensive-brew = "intensive_brew.cli:app"
 pydantic = "^1.9.1"
 python = "^3.10"
 typer = { extras = ["all"], version = "^0.6.1" }
+PyYAML = "^6.0"
 
 # https://python-poetry.org/docs/master/managing-dependencies/
 [tool.poetry.group.test.dependencies]
@@ -53,7 +54,7 @@ pep8-naming = "^0.13.0"
 poethepoet = "^0.16.0"
 pre-commit = "^2.19.0"
 pydocstyle = { extras = ["toml"], version = "^6.1.1" }
-pytest = "^7.1.2"
+pytest = "^7"
 pytest-clarity = "^1.0.1"
 pytest-mock = "^3.8.1"
 pytest-xdist = "^2.5.0"
@@ -63,6 +64,7 @@ typeguard = "^2.13.3"
 yesqa = "^1.4.0"
 
 # https://python-poetry.org/docs/master/managing-dependencies/
+types-PyYAML = "^6.0.12.2"
 [tool.poetry.group.dev.dependencies]
 cruft = "^2.11.0"
 pdoc = "^12.0.2"
@@ -75,7 +77,7 @@ skips = ["B101"]
 
 # https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
 [tool.black]
-line-length = 100
+line-length = 140
 target-version = ["py310"]
 
 # https://coverage.readthedocs.io/en/latest/config.html#report
@@ -110,7 +112,7 @@ strictness = "short"
 # https://pycqa.github.io/isort/docs/configuration/options.html
 [tool.isort]
 color_output = true
-line_length = 100
+line_length = 140
 profile = "black"
 src_paths = ["src", "tests"]
 

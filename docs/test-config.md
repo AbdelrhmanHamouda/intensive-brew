@@ -77,6 +77,18 @@ configurations:
 
 This sections highlight all the available options that would impact the configuration of the deployed cluster nodes.
 
+### Locust container image
+
+`image: str`  is an **optional** flag that instructs _Intensive Brew_ to populate the `image` field in _LocustTest_. Default is to use the latest _[Locust]_ image.
+
+```yaml title="test-config.yaml"
+configurations:
+  ...
+  test_name:
+    ...
+    image: str
+```
+
 ### Kubernetes test configuration map
 
 `configmap: str` is an **optional** flag that instructs _Intensive Brew_ to populate the `configMap` field in _LocustTest_. This is a feature supported by the _Locust Operator_ where it is possible to [deploy tests as k8s `configMap`] and then having it mounted on the load generation pods.
@@ -150,6 +162,9 @@ configurations:
     # Custom load shapes support.
     custom_load_shapes: bool
     
+    # Locust container image
+    image: str # (8)!
+    
     # Test configuration map
     configmap: str # (6)!
 
@@ -172,6 +187,7 @@ configurations:
 5. This field maps to the `--host` locust switch and appears in `masterCommandSeed` of the _LocustTest custom resource_.
 6. This field maps to the `configMap`  section of the _LocustTest custom resource_.
 7. This field maps to the `workerReplicas`  section of the _LocustTest custom resource_.
+8. This field maps to the `image`  section of the _LocustTest custom resource_.
 
 
 
@@ -181,3 +197,4 @@ configurations:
 [Custom Load Shapes]: https://docs.locust.io/en/stable/custom-load-shape.html
 [deploy tests as k8s `configMap`]: https://abdelrhmanhamouda.github.io/locust-k8s-operator/getting_started/#step-4-deploy-test-as-a-configmap
 [feature request]: https://github.com/AbdelrhmanHamouda/intensive-brew/issues
+[Locust]: https://hub.docker.com/r/locustio/locust#!

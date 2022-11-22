@@ -1,9 +1,9 @@
 """DTO package."""
 from pydantic import BaseModel, validator
 
-from intensive_brew.core.dto.expert_mode import ExpertMode
 from intensive_brew.core.dto.utils.validator_utils import is_expert
-from intensive_brew.core.dto.vanilla_specs import VanillaSpecs
+from intensive_brew.core.dto.yaml.expert_mode import ExpertMode
+from intensive_brew.core.dto.yaml.vanilla_specs import VanillaSpecs
 
 
 class TestConfig(BaseModel):

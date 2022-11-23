@@ -1,9 +1,11 @@
 """DTO package."""
 from pydantic import BaseModel, validator
 
-from intensive_brew.core.dto.expert_mode import ExpertMode
+from intensive_brew.core.dto.custom_resource.annotations import Annotations
+from intensive_brew.core.dto.custom_resource.labels import Labels
 from intensive_brew.core.dto.utils.validator_utils import is_expert
-from intensive_brew.core.dto.vanilla_specs import VanillaSpecs
+from intensive_brew.core.dto.yaml.expert_mode import ExpertMode
+from intensive_brew.core.dto.yaml.vanilla_specs import VanillaSpecs
 
 
 class TestConfig(BaseModel):
@@ -32,6 +34,12 @@ class TestConfig(BaseModel):
 
     # * Test configuration map
     configmap: str | None = None
+
+    # * Labels
+    labels: Labels | None = None
+
+    # * Annotations
+    annotations: Annotations | None = None
 
     @validator("entry_point", always=True)
     def check_entry_point(cls, param_value: str, values):  # type: ignore[no-untyped-def] # noqa: N805

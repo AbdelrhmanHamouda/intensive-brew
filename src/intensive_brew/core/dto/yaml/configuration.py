@@ -2,7 +2,7 @@
 
 from pydantic import BaseModel
 
-from intensive_brew.core.dto.test_config import TestConfig
+from intensive_brew.core.dto.yaml.test_config import TestConfig
 
 
 class Configuration(BaseModel):

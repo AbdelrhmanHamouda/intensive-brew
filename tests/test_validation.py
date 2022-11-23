@@ -2,9 +2,9 @@
 import pytest
 from pydantic import ValidationError
 
-from intensive_brew.core.dto.expert_mode import ExpertMode
-from intensive_brew.core.dto.test_config import TestConfig
-from intensive_brew.core.dto.vanilla_specs import VanillaSpecs
+from intensive_brew.core.dto.yaml.expert_mode import ExpertMode
+from intensive_brew.core.dto.yaml.test_config import TestConfig
+from intensive_brew.core.dto.yaml.vanilla_specs import VanillaSpecs
 
 
 def test_vanilla_specs() -> None:

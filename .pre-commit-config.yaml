@@ -42,6 +42,7 @@ repos:
       - id: mixed-line-ending
       - id: name-tests-test
         args: [--pytest-test-first]
+        exclude: "fixtures.py"
       - id: no-commit-to-branch
       - id: trailing-whitespace
         types: [python]

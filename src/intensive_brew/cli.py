@@ -3,6 +3,7 @@ import logging as log
 
 import typer
 
+from intensive_brew.core.custom_resource.generation import Generation
 from intensive_brew.core.yaml.validation import Validation
 from intensive_brew.sys_config.config import get_logging_level
 
@@ -28,5 +29,4 @@ def generate_custom_resource(
     config_file: str = typer.Option(..., "--configuration-file", "-f"), output_path: str = typer.Option(..., "--output", "-o")
 ) -> None:
     """Generate LocustTest custom resource from YAML configuration."""
-    typer.echo(f"{config_file=}")
-    typer.echo(f"{output_path=}")
+    Generation.generate(config_file, output_path)

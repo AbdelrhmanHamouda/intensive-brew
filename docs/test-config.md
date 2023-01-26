@@ -113,6 +113,40 @@ configurations:
     worker_replicas: int
 ```
 
+### Kubernetes Affinity
+
+It is an **optional** section that instructs _Intensive Brew_ to populate the `affinity` field in _LocustTest_. The spec is structured in a similar way as the _Operator_. 
+
+```yaml title="test-config.yaml"
+configurations:
+  ...
+  test_name:
+    ...
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution: # (1)!
+          <label-key>: <label-value> 
+```
+
+1. Can contain as many entries as desired.
+
+### Kubernetes pod taint tolerations
+
+It is an **optional** flag that instructs _Intensive Brew_ to populate the `tolerations` field in _LocustTest_. The spec is structured in a similar way as the _Operator_.
+
+```yaml title="test-config.yaml"
+configurations:
+  ...
+  tolerations: # (1)!
+      - key: <string value>
+        operator: <"Exists", "Equal">
+        value: <string value>
+        effect: <"NoSchedule", "PreferNoSchedule", "NoExecute">
+      ...
+```
+
+1. Can contain as many entries as desired.
+
 ## Expert mode
 
 `expert_mode: obj` is an **optional** section that grants direct control over what the _LocustTest_ fields for `masterCommandSeed` & `workerCommandSeed` will contain.
@@ -170,6 +204,19 @@ configurations:
 
     # Worker replicas
     worker_replicas: int # (7)!
+
+    # Kubernetes affinity
+    affinity: # (9)!
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution: 
+          <label-key>: <label-value>
+
+    # Kubernetes pod taint toleration      
+    tolerations: # (10)!
+      - key: <string value>
+        operator: <"Exists", "Equal">
+        value: <string value>
+        effect: <"NoSchedule", "PreferNoSchedule", "NoExecute">
     
     # ! USE WITH  CAUTION
     expert_mode:
@@ -188,6 +235,8 @@ configurations:
 6. This field maps to the `configMap`  section of the _LocustTest custom resource_.
 7. This field maps to the `workerReplicas`  section of the _LocustTest custom resource_.
 8. This field maps to the `image`  section of the _LocustTest custom resource_.
+9. This field directly maps to the `affinity`  section of the _LocustTest custom resource_.
+10. This field directly maps to the `tolerations`  section of the _LocustTest custom resource_.
 
 
 

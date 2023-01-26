@@ -7,8 +7,16 @@ from pathlib import Path
 import pytest
 
 from intensive_brew.core.custom_resource.utils.helpers import Helpers
+from intensive_brew.core.dto.custom_resource.toleration import Toleration
 from intensive_brew.core.dto.yaml.configuration import Configuration
-from tests.generation.fixtures import DEFAULT_ENTRY_POINT, prepare_meta_block, prepare_spec_block, prepare_test_config
+from tests.generation.fixtures import (
+    DEFAULT_ENTRY_POINT,
+    prepare_meta_block,
+    prepare_spec_block,
+    prepare_test_config,
+    prepare_test_config_with_node_affinity,
+    prepare_test_config_with_taint_toleration,
+)
 
 DEFAULT_NX_PERF_ITG_API_VERSION = "locust.io/v1"
 DEFAULT_NX_PERF_ITG_KIND = "LocustTest"
@@ -41,6 +49,35 @@ def test_cr_spec_generation() -> None:
     """Check logic for generating `spec` block for the Custom Resource is compliant with CRD."""
     # * Setup
     test_config = prepare_test_config("expert")
+    expected_spec_block = prepare_spec_block(test_config)
+
+    # * Act
+    spec_block = Helpers._generate_cr_spec(test_config)
+
+    # * Assert
+    assert spec_block == expected_spec_block
+
+
+def test_cr_spec_generation_with_node_affinity() -> None:
+    """Check logic for generating `spec` block with Node Affinity for the Custom Resource is compliant with CRD."""
+    # * Setup
+    affinity_map = {"nodeGroup-label": "dedicated-performance"}
+    test_config = prepare_test_config_with_node_affinity(affinity_map)
+    expected_spec_block = prepare_spec_block(test_config)
+
+    # * Act
+    spec_block = Helpers._generate_cr_spec(test_config)
+
+    # * Assert
+    assert spec_block == expected_spec_block
+
+
+def test_cr_spec_generation_with_taint_toleration() -> None:
+    """Check logic for generating `spec` block with Taint tolerations for the Custom Resource is compliant with CRD."""
+    # * Setup
+    toleration_a = Toleration(key="hardware", operator="Equal", effect="NoSchedule", value="ssd")
+    toleration_b = Toleration(key="dedicated", operator="Exists", effect="NoSchedule")
+    test_config = prepare_test_config_with_taint_toleration([toleration_a, toleration_b])
     expected_spec_block = prepare_spec_block(test_config)
 
     # * Act

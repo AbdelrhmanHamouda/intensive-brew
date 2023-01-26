@@ -8,8 +8,11 @@ from intensive_brew.core.custom_resource.utils.constants import (
     VANILLA_SPECS_COMMAND_TEMPLATE,
 )
 from intensive_brew.core.custom_resource.utils.helpers import Helpers
+from intensive_brew.core.dto.custom_resource.affinity import Affinity
 from intensive_brew.core.dto.custom_resource.metadata import Metadata
+from intensive_brew.core.dto.custom_resource.node_affinity import NodeAffinity
 from intensive_brew.core.dto.custom_resource.spec import Spec
+from intensive_brew.core.dto.custom_resource.toleration import Toleration
 from intensive_brew.core.dto.yaml.expert_mode import ExpertMode
 from intensive_brew.core.dto.yaml.test_config import TestConfig
 from intensive_brew.core.dto.yaml.vanilla_specs import VanillaSpecs
@@ -34,11 +37,31 @@ def prepare_reference_cr_configuration(configuration: TestConfig) -> Spec:
     # Get image path
     image = configuration.image
 
+    # Get Configuration map
+    config_map = configuration.configmap
+
+    # Get labels
+    labels = configuration.labels
+
+    # Get annotations
+    annotations = configuration.annotations
+
+    # Get affinity
+    affinity = configuration.affinity
+
+    # Get taint tolerations
+    tolerations = configuration.tolerations
+
     return Spec(
         masterCommandSeed=master_command_seed,
         workerCommandSeed=worker_command_seed,
         workerReplicas=worker_replicas,  # type: ignore[arg-type]
         image=image,  # type: ignore[arg-type]
+        configMap=config_map,
+        labels=labels,
+        annotations=annotations,
+        affinity=affinity,
+        tolerations=tolerations,
     )
 
 
@@ -78,6 +101,36 @@ def prepare_test_config(mode: str = "custom") -> TestConfig:
         raise RuntimeError(f"Invalid `mode` selected. Supported modes are:['custom', 'expert', 'vanilla'], Selected mode: {mode}")
 
     logging.debug(f"Generated Team config based on {mode=}, is {test_config}")
+    return test_config
+
+
+def prepare_test_config_with_node_affinity(affinity_map: dict[str, str]) -> TestConfig:
+    """
+    Create a predictable test configuration.
+
+    Create a `TestConfig` object with node affinity information
+
+    :param affinity_map:
+    :return:
+    """
+    affinity = Affinity(nodeAffinity=NodeAffinity(requiredDuringSchedulingIgnoredDuringExecution=affinity_map))
+    test_config = TestConfig(entry_point=DEFAULT_ENTRY_POINT, custom_load_shapes=True, affinity=affinity)
+
+    logging.debug(f"Generated Team config is {test_config}")
+    return test_config
+
+
+def prepare_test_config_with_taint_toleration(tolerations: list[Toleration]) -> TestConfig:
+    """
+    Create a predictable test configuration.
+
+    Create a `TestConfig` object with taint toleration information
+    :param tolerations:
+    :return:
+    """
+    test_config = TestConfig(entry_point=DEFAULT_ENTRY_POINT, custom_load_shapes=True, tolerations=tolerations)
+
+    logging.debug(f"Generated Team config is {test_config}")
     return test_config
 
 
@@ -131,4 +184,9 @@ def prepare_spec_block(test_config: TestConfig) -> Spec:
         workerCommandSeed=cr_config.worker_command_seed,
         workerReplicas=cr_config.worker_replicas,
         image=cr_config.image,
+        configMap=cr_config.config_map,
+        labels=cr_config.labels,
+        annotations=cr_config.annotations,
+        affinity=cr_config.affinity,
+        tolerations=cr_config.tolerations,
     )

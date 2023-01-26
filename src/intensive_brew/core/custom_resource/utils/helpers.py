@@ -115,6 +115,12 @@ class Helpers:
         # Annotations
         annotations = test_config.annotations
 
+        # Affinity
+        affinity = test_config.affinity
+
+        # Taint tolerations
+        tolerations = test_config.tolerations
+
         return Spec(
             image=image,  # type: ignore[arg-type]
             masterCommandSeed=master_command_seed,
@@ -123,6 +129,8 @@ class Helpers:
             configMap=config_map,
             annotations=annotations,
             labels=labels,
+            affinity=affinity,
+            tolerations=tolerations,
         )
 
     @staticmethod

@@ -49,6 +49,9 @@ RUN : \
 # Copy the content of the `src` directory to the working directory
 COPY src/ ./src
 
+# Copy README.md to the working directory (needed for ci checks)
+COPY README.md .
+
 # Copy the content of the `test` directory to the working directory
 COPY tests/ ./tests
 

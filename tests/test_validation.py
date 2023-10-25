@@ -20,6 +20,20 @@ def test_vanilla_specs() -> None:
     )
 
 
+def test_vanilla_specs_with_stop_timeout() -> None:
+    """Check creating an object configuration stop_timeout parameter for vanilla_specs."""
+    assert TestConfig(
+        entry_point="my_script.py",
+        vanilla_specs=VanillaSpecs(
+            users=1000,
+            spawn_rate=10,
+            run_time="60s",
+            target_host="http://localhost:8080",  # type: ignore[arg-type]
+            stop_timeout=5,
+        ),
+    )
+
+
 def test_custom_load_shap() -> None:
     """Check creating an object with bare-minimum configuration for custom_load_shap."""
     assert TestConfig(entry_point="my_script.py", custom_load_shapes=True)

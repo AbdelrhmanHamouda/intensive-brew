@@ -52,6 +52,8 @@ configurations:
       run_time: str # (1)!
       # * Test target URL 
       target_host: str
+      # * Test stop timeout
+      stop_timeout: str
 ```
 
 1. This field support different was of expressing duration e.g. (`300s`, `20m`, `3h`, `1h30m`, etc.). Default value is `30s`.
@@ -192,6 +194,8 @@ configurations:
       run_time: str # (4)!
       # Test target URL 
       target_host: str # (5)!
+      # * Test stop timeout
+      stop_timeout: str
     
     # Custom load shapes support.
     custom_load_shapes: bool

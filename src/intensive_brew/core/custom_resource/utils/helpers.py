@@ -158,7 +158,7 @@ class Helpers:
                 users=test_config.vanilla_specs.users,  # type: ignore[union-attr]
                 spawn_rate=test_config.vanilla_specs.spawn_rate,  # type: ignore[union-attr]
                 run_time=test_config.vanilla_specs.run_time,  # type: ignore[union-attr]
-                stop_timeout=test_config.vanilla_specs.stop_timeout,  # type: ignore[union-attr]
+                termination_timeout=test_config.vanilla_specs.termination_timeout,  # type: ignore[union-attr]
             )
 
         log.debug(f"Generated 'MASTER' node command seed: {command}")

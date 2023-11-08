@@ -20,8 +20,8 @@ def test_vanilla_specs() -> None:
     )
 
 
-def test_vanilla_specs_with_stop_timeout() -> None:
-    """Check creating an object configuration stop_timeout parameter for vanilla_specs."""
+def test_vanilla_specs_with_termination_timeout() -> None:
+    """Check creating an object configuration termination_timeout parameter for vanilla_specs."""
     assert TestConfig(
         entry_point="my_script.py",
         vanilla_specs=VanillaSpecs(
@@ -29,7 +29,7 @@ def test_vanilla_specs_with_stop_timeout() -> None:
             spawn_rate=10,
             run_time="60s",
             target_host="http://localhost:8080",  # type: ignore[arg-type]
-            stop_timeout=5,
+            termination_timeout=5,
         ),
     )
 

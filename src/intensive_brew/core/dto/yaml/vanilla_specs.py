@@ -22,7 +22,7 @@ class VanillaSpecs(BaseModel):
     run_time: str = "30s"
 
     # * Number of seconds to wait for a simulated user to complete any executing task before exiting. Default: 0.
-    stop_timeout: int = 0
+    termination_timeout: int = 0
 
     # * Target URL of the test
     target_host: AnyUrl

@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 # https://python-poetry.org/docs/pyproject/
 [tool.poetry]
 name = "intensive-brew"
-version = "0.3.0"
+version = "0.4.0"
 description = "Simple cli tool that converts a simple yaml into a compatible Locust Kubernetes Operator custom resource."
 authors = ["Abdelrhman Hamouda <.>"]
 readme = "README.md"
@@ -17,7 +17,7 @@ repository = "https://github.com/AbdelrhmanHamouda/intensive-brew"
 bump_message = "bump(release): v$current_version → v$new_version"
 tag_format = "v$version"
 update_changelog_on_bump = true
-version = "0.3.0"
+version = "0.4.0"
 version_files = ["pyproject.toml:version"]
 
 # https://python-poetry.org/docs/pyproject/#scripts

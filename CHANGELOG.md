@@ -1,3 +1,9 @@
+## v0.4.0 (2023-11-21)
+
+### Feat
+
+- **49**: Added stop_timeout parameter for locust command (#52)
+
 ## v0.3.0 (2023-01-27)
 
 ### Feat

@@ -37,6 +37,7 @@ configurations:
 - Users spawn rate
 - Test duration
 - Target host of the test
+- Timeout to end all current tasks if run_time was reached [Optional field]
 
 ```yaml title="test-config.yaml"
 configurations:
@@ -52,6 +53,8 @@ configurations:
       run_time: str # (1)!
       # * Test target URL 
       target_host: str
+      # * Timeout to end current task (sec)
+      termination_timeout: int
 ```
 
 1. This field support different was of expressing duration e.g. (`300s`, `20m`, `3h`, `1h30m`, etc.). Default value is `30s`.
@@ -192,6 +195,8 @@ configurations:
       run_time: str # (4)!
       # Test target URL 
       target_host: str # (5)!
+      # Timeout to end current task (sec) 
+      termination_timeout: int # (11)!
     
     # Custom load shapes support.
     custom_load_shapes: bool
@@ -237,7 +242,7 @@ configurations:
 8. This field maps to the `image`  section of the _LocustTest custom resource_.
 9. This field directly maps to the `affinity`  section of the _LocustTest custom resource_.
 10. This field directly maps to the `tolerations`  section of the _LocustTest custom resource_.
-
+11. This field maps to the `--stop-timeout` locust switch and appears in `masterCommandSeed` of the _LocustTest custom resource_.
 
 
 

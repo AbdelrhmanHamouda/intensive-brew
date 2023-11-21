@@ -71,5 +71,5 @@ The project uses [mkdocs.org](https://www.mkdocs.org) to build and maintain its 
   from `pyproject.toml` and `poetry.lock`. Add `--group test` or `--group dev` to uninstall a CI or development dependency, respectively.
 - Run `poetry update` from within the development environment to upgrade all dependencies to the latest versions allowed by `pyproject.toml`.
 - Run `cz bump` to bump the package's version, update the `CHANGELOG.md`, and create a git tag.
-- Project has a protection against pushing to `main/msater` branches by utilizing pre-commit hooks.
+- Project has a protection against pushing to `main/master` branches by utilizing pre-commit hooks.
 </details>

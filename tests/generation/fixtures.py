@@ -22,6 +22,7 @@ DEFAULT_SPAWN_RATE = 20
 DEFAULT_TEST_USERS = 10000
 DEFAULT_ENTRY_POINT = "src/my_test.py"
 DEFAULT_TARGET_HOST = "http://localhost:8080"
+DEFAULT_TERMINATION_TIMEOUT = 10
 DEFAULT_EXPERT_MODE_SEED_CMD = "--locustfile src/my_test.py --u 1000"
 
 
@@ -95,6 +96,7 @@ def prepare_test_config(mode: str = "custom") -> TestConfig:
                 spawn_rate=DEFAULT_SPAWN_RATE,
                 run_time=DEFAULT_RUN_TIME,
                 target_host=DEFAULT_TARGET_HOST,  # type: ignore[arg-type]
+                termination_timeout=DEFAULT_TERMINATION_TIMEOUT,
             ),
         )
     else:
@@ -142,6 +144,7 @@ def prepare_vanilla_spec_command_seed(team_config: TestConfig) -> str:
         users=team_config.vanilla_specs.users,  # type: ignore[union-attr]
         spawn_rate=team_config.vanilla_specs.spawn_rate,  # type: ignore[union-attr]
         run_time=team_config.vanilla_specs.run_time,  # type: ignore[union-attr]
+        termination_timeout=team_config.vanilla_specs.termination_timeout,  # type: ignore[union-attr]
     )
 
 

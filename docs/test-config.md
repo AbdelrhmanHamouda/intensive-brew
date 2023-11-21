@@ -195,8 +195,8 @@ configurations:
       run_time: str # (4)!
       # Test target URL 
       target_host: str # (5)!
-      # * Timeout to end current task (sec) # (11)!
-      termination_timeout: int
+      # Timeout to end current task (sec) 
+      termination_timeout: int # (11)!
     
     # Custom load shapes support.
     custom_load_shapes: bool
